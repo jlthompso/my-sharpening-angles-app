@@ -7,6 +7,9 @@ import 'sample_feature/sample_item_list_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
 
+import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -25,6 +28,8 @@ class MyApp extends StatelessWidget {
     return ListenableBuilder(
       listenable: settingsController,
       builder: (BuildContext context, Widget? child) {
+        final providers = [EmailAuthProvider()];
+
         return MaterialApp(
           // Providing a restorationScopeId allows the Navigator built by the
           // MaterialApp to restore the navigation stack when a user leaves and
@@ -73,7 +78,18 @@ class MyApp extends StatelessWidget {
                     return const SampleItemDetailsView();
                   case SampleItemListView.routeName:
                   default:
-                    return const SampleItemListView();
+                    if (FirebaseAuth.instance.currentUser == null) {
+                      return SignInScreen(
+                        providers: providers,
+                        actions: [
+                          AuthStateChangeAction<SignedIn>((context, state) {
+                            Navigator.pushReplacementNamed(context, '/profile');
+                          }),
+                        ],
+                      );
+                    } else {
+                      return const SampleItemListView();
+                    }
                 }
               },
             );

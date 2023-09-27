@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "539672730463",
+    "project_id": "my-sharpening-angles",
+    "storage_bucket": "my-sharpening-angles.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539672730463:android:c05e7275b63def3d6bf4ea",
+        "android_client_info": {
+          "package_name": "com.example.my_sharpening_angles"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFxXCavzPd9rZs4Stg6zVDw9F4VIFB7x4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
